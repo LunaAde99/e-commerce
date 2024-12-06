@@ -32,7 +32,7 @@
                 <td th:text="${prodotto.luogo}"></td>
                 <td><img th:src="${prodotto.url}" alt="immagine prodotto" style="width: 100px;"></td>
                 <td>
-                    <input type="number" th:name="'prodottiSelezionati[' + ${prodotto.nome} + ']'" min="0" value="0" />
+                    <input type="number" th:name="${prodotto.nome}" min="0" value="0" />
                 </td>
             </tr>
         </tbody>
