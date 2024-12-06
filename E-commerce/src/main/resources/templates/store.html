@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <nav class="nav-wrapper indigo darken-1">
+        <a href="/" class="brand-logo">E-commerce</a>
+    </nav>
+    <div class="container">
+        <h3 class="center-align">Prodotti Disponibili</h3>
+      <form action="/buy" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Prezzo</th>
+                <th>Luogo</th>
+                <th>Immagine</th>
+                <th>Quantità</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prodotto : ${listaProdotti}">
+                <td th:text="${prodotto.nome}"></td>
+                <td th:text="${prodotto.marca}"></td>
+                <td th:text="${prodotto.prezzo}"></td>
+                <td th:text="${prodotto.luogo}"></td>
+                <td><img th:src="${prodotto.url}" alt="immagine prodotto" style="width: 100px;"></td>
+                <td>
+                    <input type="number" th:name="'prodottiSelezionati[' + ${prodotto.nome} + ']'" min="0" value="0" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+            <h3 class="center-align">Cestini Disponibili</h3>
+            <div th:each="cesto : ${listaCestini}" class="center-align">
+                <label>
+                    <input type="radio" th:name="'cestoSelezionato'" th:value="${cesto.nome}" />
+                    <span th:text="${cesto.nome + ' - €' + cesto.prezzo}"></span>
+                </label>
+            </div>
+   <div class="center-align">
+    <button class="btn waves-effect waves-light indigo" type="submit">Procedi all'acquisto</button>
+</div>
+        </form>
+    </div>
+</body>
+</html>
+

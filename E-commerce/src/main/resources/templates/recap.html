@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recap Acquisto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <nav class="nav-wrapper indigo darken-1">
+        <a href="/" class="brand-logo">E-commerce</a>
+    </nav>
+    <div class="container">
+        <h3 class="center-align">Riepilogo Acquisto</h3>
+        
+        <h5>Prodotti Selezionati</h5>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantità</th>
+                    <th>Prezzo Unitario</th>
+                    <th>Totale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prodottoA : ${prodottiSelezionati}">
+                    <td th:text="${prodottoA.prodotto.nome}"></td>
+                    <td th:text="${prodottoA.quantita}"></td>
+                    <td th:text="${prodottoA.prodotto.prezzo}"></td>
+                    <td th:text="${prodottoA.getSubtotale()}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5>Cestino Selezionato</h5>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Nome Cesto</th>
+                    <th>Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cestoA : ${cestiniSelezionati}">
+                    <td th:text="${cestoA.nome}"></td>
+                    <td th:text="${cestoA.prezzo}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5>Totale Prodotti: €<span th:text="${totaleProdotti}"></span></h5>
+        <h5>Totale Cesti: €<span th:text="${totaleCesti}"></span></h5>
+        <h5>Totale Finale: €<span th:text="${totaleFinale}"></span></h5>
+    </div>
+</body>
+</html>
